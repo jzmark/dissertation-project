@@ -1,0 +1,21 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group
+        android:id="@+id/group1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/item1"
+            android:icon="@drawable/ic_menu"
+            android:title="Test"
+            android:checked="true" />
+        <item
+            android:id="@+id/item2"
+            android:icon="@drawable/ic_menu"
+            android:title="Test" />
+        <item
+            android:id="@+id/item3"
+            android:icon="@drawable/ic_menu"
+            android:title="Test" />
+    </group>
+
+</menu>
