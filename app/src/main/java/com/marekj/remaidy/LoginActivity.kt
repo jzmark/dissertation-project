@@ -24,7 +24,6 @@ class LoginActivity : AppCompatActivity() {
 
     /*
      * A function to add names of F1 teams and logos to a list of MyModel
-     */
     private fun populateList(): ArrayList<RecyclerViewModel> {
         val list = ArrayList<RecyclerViewModel>()
         val myImageList = arrayOf(R.drawable.restaurant, R.drawable.restaurant, R.drawable.restaurant,
@@ -42,4 +41,5 @@ class LoginActivity : AppCompatActivity() {
         }
         return list
     }
+    */
 }

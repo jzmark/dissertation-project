@@ -27,7 +27,7 @@
                 android:layout_height="?attr/actionBarSize"
                 app:menu="@menu/top_app_bar"
                 app:navigationIcon="@drawable/ic_menu"
-                app:title="@string/addReviewTab" />
+                app:title="X" />
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.core.widget.NestedScrollView
@@ -53,7 +53,7 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/reviews"
+            android:text="X"
             tools:layout_conversion_absoluteHeight="48dp"
             tools:layout_conversion_absoluteWidth="206dp"
             tools:layout_editor_absoluteX="0dp"
@@ -62,7 +62,7 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/yourReviews"
+            android:text="X"
             tools:layout_conversion_absoluteHeight="48dp"
             tools:layout_conversion_absoluteWidth="206dp"
             tools:layout_editor_absoluteX="206dp"
@@ -93,7 +93,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:contentDescription="@string/addReview"
+        android:contentDescription="X"
         app:srcCompat="@drawable/ic_plus"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
