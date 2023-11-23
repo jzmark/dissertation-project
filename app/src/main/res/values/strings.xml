@@ -6,4 +6,6 @@
     <string name="welcome_message">Welcome! Please log in using buttons below.</string>
     <string name="user">User</string>
     <string name="carer">Carer</string>
+    <string name="logo_picture">Logo picture</string>
+    <string name="main_menu">Main menu</string>
 </resources>
