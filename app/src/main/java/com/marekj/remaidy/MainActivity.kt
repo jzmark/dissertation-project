@@ -1,10 +1,12 @@
 package com.marekj.remaidy
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.navigation.NavigationView
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,9 +15,19 @@ class MainActivity : AppCompatActivity() {
 
         //drawer actions
         val topAppBar = findViewById<MaterialToolbar>(R.id.topAppBar)
+        val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
         topAppBar.setNavigationOnClickListener {
-            val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
             drawerLayout.open()
+        }
+
+        val navigationView = findViewById<NavigationView>(R.id.navigation)
+        navigationView.setNavigationItemSelectedListener { menuItem ->
+            // Handle menu item selected
+            menuItem.isChecked = true
+            drawerLayout.close()
+            val menuIntent = Intent(this, MainActivity::class.java)
+            startActivity(menuIntent)
+            true
         }
     }
 
