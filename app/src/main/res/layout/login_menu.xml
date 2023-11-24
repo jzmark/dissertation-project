@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".MainMenu">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayout"
@@ -16,7 +16,8 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/topAppBar"
@@ -38,8 +39,8 @@
 
     <Button
         android:id="@+id/userLogin"
-        android:layout_width="273dp"
-        android:layout_height="109dp"
+        android:layout_width="225dp"
+        android:layout_height="91dp"
         android:text="@string/user"
         android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/carerLogin"
@@ -50,8 +51,8 @@
 
     <Button
         android:id="@+id/carerLogin"
-        android:layout_width="273dp"
-        android:layout_height="109dp"
+        android:layout_width="225dp"
+        android:layout_height="91dp"
         android:text="@string/carer"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -65,7 +66,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/welcome_message"
-        android:textSize="34sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/userLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -76,13 +77,15 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.25"
+        app:layout_constraintWidth_percent="0.25"
+        android:contentDescription="@string/logo_picture"
         app:layout_constraintBottom_toTopOf="@+id/welcomeMessage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/coordinatorLayout"
-        app:srcCompat="@drawable/logo"
-        android:contentDescription="@string/logo_picture" />
+        app:srcCompat="@drawable/logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

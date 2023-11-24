@@ -2,32 +2,24 @@ package com.marekj.remaidy
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.drawerlayout.widget.DrawerLayout
-import com.google.android.material.appbar.MaterialToolbar
-import com.google.android.material.navigation.NavigationView
 
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_menu)
+        setContentView(R.layout.login_menu)
 
-        //drawer actions
-        val topAppBar = findViewById<MaterialToolbar>(R.id.topAppBar)
-        val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
-        topAppBar.setNavigationOnClickListener {
-            drawerLayout.open()
-        }
-
-        val navigationView = findViewById<NavigationView>(R.id.navigation)
-        navigationView.setNavigationItemSelectedListener { menuItem ->
-            // Handle menu item selected
-            menuItem.isChecked = true
-            drawerLayout.close()
-            val menuIntent = Intent(this, MainActivity::class.java)
+        val userLoginButton = findViewById<Button>(R.id.userLogin)
+        userLoginButton.setOnClickListener {
+            val menuIntent = Intent(this, MainMenu::class.java)
             startActivity(menuIntent)
-            true
+        }
+        val carerLoginButton = findViewById<Button>(R.id.carerLogin)
+        carerLoginButton.setOnClickListener {
+            val menuIntent = Intent(this, MainMenu::class.java)
+            startActivity(menuIntent)
         }
     }
 
