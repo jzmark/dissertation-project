@@ -15,4 +15,27 @@
     <string name="questions">Questions</string>
     <string name="help">Help</string>
     <string name="login_successful">You have been logged in successfully!</string>
+    <string name="main_menu_greeting">Welcome to Remaidy!</string>
+    <string name="main_menu_1">This app purpose is to help you revisit your past memories.</string>
+    <string name="main_menu_2">You can do this by uploading your
+        photos using the menu on the left hand side.</string>
+    <string name="main_menu_3">For help with using this app,
+        please tap the button \'Help\' which you can find by tapping left top corner of the screen
+        at any time.</string>
+    <string name="main_menu_4">If the text is too small, please press the button below.
+        This will take you to the system accessibility settings where you can change
+        screen and font size.</string>
+    <string name="main_menu_button1">display settings</string>
+    <string name="main_menu_5">To do:</string>
+    <string name="card3_2_heading">Open your gallery</string>
+    <string name="card3_3_heading">Test yourself</string>
+    <string name="card3_1_subheading">Select from your favourite photos and upload
+        them here</string>
+    <string name="card3_2_subheading">Viewing your added media is just one click away</string>
+    <string name="card3_3_subheading">...and experience how photos recall
+        your distant memories</string>
+    <string name="upload">Upload</string>
+    <string name="open">Open</string>
+    <string name="test">Test</string>
+
 </resources>
