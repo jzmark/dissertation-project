@@ -34,13 +34,13 @@ class MainMenu : AppCompatActivity() {
             // Handle menu item selected
             menuItem.isChecked = true
             drawerLayout.close()
-            if (menuItem.itemId == R.id.logoutDrawer) {
-                val menuIntent = Intent(this, MainActivity::class.java)
-                startActivity(menuIntent)
+            if (menuItem.itemId == R.id.controlPanel) {
+//                val menuIntent = Intent(this, MainActivity::class.java)
+//                startActivity(menuIntent)
+                menuItem.isChecked = false
                 true
             } else {
-                val menuIntent = Intent(this, MainMenu::class.java)
-                startActivity(menuIntent)
+                menuItem.isChecked = false
                 true
             }
         }

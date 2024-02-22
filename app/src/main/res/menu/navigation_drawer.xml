@@ -10,7 +10,7 @@
         <item
             android:id="@+id/questionsDrawer"
             android:icon="@drawable/ic_answer_foreground"
-            android:title="@string/questions" />
+            android:title="@string/quiz" />
         <item
             android:id="@+id/galleryDrawer"
             android:icon="@drawable/ic_photo_foreground"
@@ -32,9 +32,9 @@
             android:icon="@drawable/ic_settings_foreground"
             android:title="@string/settings" />
         <item
-            android:id="@+id/logoutDrawer"
-            android:icon="@drawable/ic_logout_foreground"
-            android:title="@string/logout" />
+            android:id="@+id/controlPanel"
+            android:icon="@drawable/ic_control_panel_foreground"
+            android:title="@string/ctrpanel" />
     </group>
 
 </menu>
