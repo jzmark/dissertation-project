@@ -2,7 +2,7 @@
     <string name="app_name">Remaidy</string>
     <string name="login_menu">Login Menu</string>
     <string name="settings">Settings</string>
-    <string name="ctrpanel">Control Panel</string>
+    <string name="control_panel">Control Panel</string>
     <string name="welcome_message">Welcome! Please log in using buttons below.</string>
     <string name="user">User</string>
     <string name="carer">Carer</string>
@@ -11,7 +11,7 @@
     <string name="greeting_header">Hi!</string>
     <string name="select_options_header">Select from options below</string>
     <string name="gallery">Gallery</string>
-    <string name="upload_photos">Upload photos</string>
+    <string name="upload_questions">Upload questions</string>
     <string name="quiz">Quiz</string>
     <string name="help">Help</string>
     <string name="login_successful">You have been logged in successfully!</string>
@@ -27,15 +27,16 @@
         screen and font size.</string>
     <string name="main_menu_button1">display settings</string>
     <string name="main_menu_5">To do:</string>
-    <string name="card3_2_heading">Open your gallery</string>
-    <string name="card3_3_heading">Test yourself</string>
-    <string name="card3_1_subheading">Select from your favourite photos and upload
-        them here</string>
-    <string name="card3_2_subheading">Viewing your added media is just one click away</string>
-    <string name="card3_3_subheading">...and experience how photos recall
-        your distant memories</string>
+    <string name="card3_2_heading">Open uploaded media</string>
+    <string name="card3_3_heading">Switch to patient mode</string>
+    <string name="card3_1_subheading">Select from your favourite media and upload
+        them by clicking button below</string>
+    <string name="card3_2_subheading">Please check if questions and photos are correct
+        before handing over the tablet to the patient</string>
+    <string name="card3_3_subheading">Hand over the tablet to the patient and start the quiz</string>
     <string name="upload">Upload</string>
     <string name="open">Open</string>
-    <string name="test">Test</string>
+    <string name="finish">Finish</string>
+    <string name="patient_mode">Patient Mode</string>
 
 </resources>
