@@ -39,5 +39,10 @@
     <string name="finish">Finish</string>
     <string name="patient_mode">Patient Mode</string>
     <string name="questions_edit_panel">Questions edit panel</string>
-
+    <string name="edit_question">Edit question</string>
+    <string name="question_name">Question name (e.g. Where that photo was taken?)</string>
+    <string name="correct_answer">Correct answer (e.g. London)</string>
+    <string name="other_answer">Other answer (incorrect)</string>
+    <string name="submit">Submit</string>
+    <string name="delete">Delete</string>
 </resources>
