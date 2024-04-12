@@ -37,27 +37,13 @@
             <TextView
                 android:id="@+id/questionName"
                 android:layout_width="900dp"
-                android:layout_height="50dp"
+                android:layout_height="100dp"
                 android:layout_marginStart="40dp"
-                android:layout_marginTop="10dp"
                 android:paddingTop="15dp"
                 android:textColor="?android:textColorPrimary"
-                app:layout_constraintStart_toEndOf="@+id/questionPicture"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/questionDescription"
-                android:layout_width="900dp"
-                android:layout_height="90dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp"
-                android:paddingTop="15dp"
-                android:textColor="?android:textColorPrimary"
-                android:textSize="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/questionPicture"
-                app:layout_constraintTop_toBottomOf="@+id/questionName" />
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 

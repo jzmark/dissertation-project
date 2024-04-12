@@ -1,9 +1,10 @@
-package com.marekj.remaidy
+package com.marekj.remaidy.patientview
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.marekj.remaidy.R
 
 
 class MainActivity : AppCompatActivity() {

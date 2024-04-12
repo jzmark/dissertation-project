@@ -1,4 +1,4 @@
-package com.marekj.remaidy
+package com.marekj.remaidy.patientview
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +8,8 @@ import android.widget.Button
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationView
+import com.marekj.remaidy.R
+import com.marekj.remaidy.controlpanel.ControlPanel
 
 class MainMenu : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,14 +36,21 @@ class MainMenu : AppCompatActivity() {
             // Handle menu item selected
             menuItem.isChecked = true
             drawerLayout.close()
+            if (menuItem.itemId == R.id.mainMenu) {
+                val menuIntent = Intent(this, MainMenu::class.java)
+                startActivity(menuIntent)
+                finish()
+                false
+            }
             if (menuItem.itemId == R.id.controlPanel) {
-//                val menuIntent = Intent(this, MainActivity::class.java)
-//                startActivity(menuIntent)
+                val menuIntent = Intent(this, ControlPanel::class.java)
+                startActivity(menuIntent)
+                finish()
+                false
+            }
+            else {
                 menuItem.isChecked = false
-                true
-            } else {
-                menuItem.isChecked = false
-                true
+                false
             }
         }
     }

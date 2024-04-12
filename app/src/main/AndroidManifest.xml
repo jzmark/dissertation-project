@@ -19,7 +19,27 @@
         android:theme="@style/Base.Theme.Remaidy"
         tools:targetApi="31">
         <activity
-            android:name=".MainMenu"
+            android:name=".patientview.MainMenu"
+            android:exported="true"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".controlpanel.ControlPanel"
+            android:exported="true"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".controlpanel.QuestionsList"
             android:exported="true"
             android:screenOrientation="landscape">
             <intent-filter>
