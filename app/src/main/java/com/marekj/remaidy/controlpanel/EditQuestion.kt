@@ -5,26 +5,19 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.appbar.MaterialToolbar
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.marekj.remaidy.patientview.MainMenu
 import com.marekj.remaidy.R
 
-class QuestionsList : AppCompatActivity() {
+
+class EditQuestion : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.questions_list)
+        setContentView(R.layout.edit_question)
         drawerListener()
-        floatingButtonListener()
     }
 
-    private fun floatingButtonListener() {
-        val button = findViewById<FloatingActionButton>(R.id.floating_action_button)
-        button.setOnClickListener() {
-            val menuIntent = Intent(this, EditQuestion::class.java)
-            startActivity(menuIntent)
-        }
-    }
+
     private fun drawerListener() {
         val topAppBar = findViewById<MaterialToolbar>(R.id.topAppBar)
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)

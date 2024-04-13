@@ -1,4 +1,4 @@
-package com.marekj.remaidy.controlpanel
+package com.marekj.remaidy.database
 
 class QuestionEntity(
     val questionId: String = "null", val description: String = "null",
