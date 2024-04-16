@@ -44,7 +44,7 @@
                 android:hint="@string/question_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image">
+                app:layout_constraintTop_toBottomOf="@+id/imageUpload">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/locationText"
@@ -147,7 +147,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/deleteButton" />
 
             <ImageView
-                android:id="@+id/image"
+                android:id="@+id/imageUpload"
                 android:layout_width="400dp"
                 android:layout_height="300dp"
                 android:layout_marginTop="20dp"
