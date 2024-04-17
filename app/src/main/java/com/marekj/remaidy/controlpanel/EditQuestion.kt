@@ -1,7 +1,9 @@
 package com.marekj.remaidy.controlpanel
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -9,7 +11,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationView
+import com.google.android.material.textfield.TextInputEditText
 import com.marekj.remaidy.R
+import com.marekj.remaidy.database.QuestionDatabase
+import com.marekj.remaidy.database.QuestionEntity
 import com.marekj.remaidy.patientview.MainMenu
 
 
@@ -17,6 +22,7 @@ class EditQuestion : AppCompatActivity() {
 
     // One Button
     lateinit var bSelectImage : ImageView
+    var imgPath : String? = null
 
     // constant to compare
     // the activity result code
@@ -34,6 +40,21 @@ class EditQuestion : AppCompatActivity() {
         // the image chooser function
         bSelectImage.setOnClickListener {
             imageChooser()
+        }
+        submitListener()
+    }
+
+    private fun submitListener() {
+        val button = findViewById<Button>(R.id.submitButton)
+        button.setOnClickListener {
+            val db = QuestionDatabase(this)
+            val description = findViewById<TextInputEditText>(R.id.descriptionText).text.toString()
+            val answer1Correct = findViewById<TextInputEditText>(R.id.answer1CorrectTextField).text.toString()
+            val answer2 = findViewById<TextInputEditText>(R.id.answer2TextField).text.toString()
+            val answer3 = findViewById<TextInputEditText>(R.id.answer3TextField).text.toString()
+            val answer4 = findViewById<TextInputEditText>(R.id.answer4TextField).text.toString()
+            db.addQuestion(QuestionEntity(description, answer1Correct, answer2,
+                answer3, answer4, imgPath!!))
         }
     }
 
@@ -66,6 +87,8 @@ class EditQuestion : AppCompatActivity() {
                 if (null != selectedImageUri) {
                     // update the preview image in the layout
                     bSelectImage.setImageURI(selectedImageUri)
+                    imgPath = selectedImageUri.toString()
+                    Log.w("TAG", imgPath!!)
                 }
             }
         }

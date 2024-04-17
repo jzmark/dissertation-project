@@ -20,6 +20,8 @@ class QuestionDatabase(context: Context?) :
 
     }
 
+
+
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(
             "CREATE TABLE " + TABLE_NAME + " ("
@@ -75,6 +77,17 @@ class QuestionDatabase(context: Context?) :
 //            "INSERT INTO $TABLE_NAME($USER_NAME, $UID, $RESTAURANT_ID, $REVIEW, $STARS, $LOCATION) " +
 //                    "VALUES('marek', 'H0e3Edu48bNgQCB0RDt9oxNswvq1', 4, 'Testing two', 3, 'Inverness')"
 //        )
+    }
+
+    fun addQuestion(question: QuestionEntity) {
+        val db = this.writableDatabase
+        db.execSQL(
+            "INSERT INTO $TABLE_NAME($DESCRIPTION, $ANSWER1_CORRECT, $ANSWER2, " +
+                    "$ANSWER3, $ANSWER4, $IMG_PATH) " +
+                    "VALUES('${question.description}', '${question.answer1Correct}', " +
+                    "'${question.answer2}', '${question.answer3}', " +
+                    "'${question.answer4}', '${question.imgPath}')"
+        )
     }
 
 //    fun getReviewsByRestaurantId(restaurantId: String): ArrayList<ReviewEntity> {
@@ -133,14 +146,6 @@ class QuestionDatabase(context: Context?) :
 //        return reviews
 //    }
 //
-//    fun addReview(review: ReviewEntity) {
-//        val db = this.writableDatabase
-//        db.execSQL(
-//            "INSERT INTO $TABLE_NAME($USER_NAME, $UID, $RESTAURANT_ID, $REVIEW, $STARS, $LOCATION) " +
-//                    "VALUES('${review.username}', '${review.uid}', '${review.restaurantId}', '${review.review}', " +
-//                    "'${review.stars}', '${review.location}')"
-//        )
-//    }
 //
 //    fun removeReview(reviewId: String) {
 //        val db = this.writableDatabase

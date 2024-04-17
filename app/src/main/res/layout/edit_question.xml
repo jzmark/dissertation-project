@@ -47,7 +47,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageUpload">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/locationText"
+                    android:id="@+id/descriptionText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
