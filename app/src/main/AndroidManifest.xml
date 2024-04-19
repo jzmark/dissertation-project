@@ -9,6 +9,8 @@
         android:xlargeScreens="true"
         android:requiresSmallestWidthDp="600" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />
     <uses-feature android:name="android.hardware.camera"
         android:required="true" />
     <application

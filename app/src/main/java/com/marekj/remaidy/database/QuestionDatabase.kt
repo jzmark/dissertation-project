@@ -17,7 +17,6 @@ class QuestionDatabase(context: Context?) :
         private const val ANSWER3 = "answer3"
         private const val ANSWER4 = "answer4"
         private const val IMG_PATH = "imgpath"
-
     }
 
 
@@ -88,6 +87,31 @@ class QuestionDatabase(context: Context?) :
                     "'${question.answer2}', '${question.answer3}', " +
                     "'${question.answer4}', '${question.imgPath}')"
         )
+    }
+
+    fun getQuestions(): ArrayList<QuestionEntity> {
+        val db = this.readableDatabase
+
+        val cursorReviews = db.rawQuery(
+            "SELECT * FROM $TABLE_NAME", null
+        )
+
+        val questions = ArrayList<QuestionEntity>()
+        if (cursorReviews.moveToFirst()) {
+            do {
+                questions.add(
+                    QuestionEntity(
+                        cursorReviews.getString(0), cursorReviews.getString(1), cursorReviews.getString(2),
+                        cursorReviews.getString(3), cursorReviews.getString(4),
+                        cursorReviews.getString(5), cursorReviews.getString(6)
+                    )
+                )
+            } while (cursorReviews.moveToNext())
+
+        }
+        cursorReviews.close()
+        db.close()
+        return questions
     }
 
 //    fun getReviewsByRestaurantId(restaurantId: String): ArrayList<ReviewEntity> {

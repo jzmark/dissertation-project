@@ -4,7 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +15,14 @@ import com.marekj.remaidy.R
 import com.marekj.remaidy.database.QuestionDatabase
 import com.marekj.remaidy.database.QuestionEntity
 import com.marekj.remaidy.patientview.MainMenu
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.OutputStream
+import java.util.UUID
+
+
+
 
 
 class EditQuestion : AppCompatActivity() {
@@ -23,6 +30,7 @@ class EditQuestion : AppCompatActivity() {
     // One Button
     lateinit var bSelectImage : ImageView
     var imgPath : String? = null
+    var imageUri : Uri? = null
 
     // constant to compare
     // the activity result code
@@ -32,14 +40,8 @@ class EditQuestion : AppCompatActivity() {
         setContentView(R.layout.edit_question)
         drawerListener()
         bSelectImage = findViewById(R.id.imageUpload)
-
-        // handle the Choose Image button to trigger
-        // the image chooser function
-
-        // handle the Choose Image button to trigger
-        // the image chooser function
         bSelectImage.setOnClickListener {
-            imageChooser()
+            pickImage()
         }
         submitListener()
     }
@@ -53,44 +55,48 @@ class EditQuestion : AppCompatActivity() {
             val answer2 = findViewById<TextInputEditText>(R.id.answer2TextField).text.toString()
             val answer3 = findViewById<TextInputEditText>(R.id.answer3TextField).text.toString()
             val answer4 = findViewById<TextInputEditText>(R.id.answer4TextField).text.toString()
-            db.addQuestion(QuestionEntity(description, answer1Correct, answer2,
+            saveImage(imageUri)
+            db.addQuestion(QuestionEntity("-1", description, answer1Correct, answer2,
                 answer3, answer4, imgPath!!))
+            startActivity(Intent(this, QuestionsList::class.java))
+            finish()
         }
     }
 
-    // this function is triggered when
-    // the Select Image Button is clicked
-    fun imageChooser() {
-
-        // create an instance of the
-        // intent of the type image
-        val i = Intent()
-        i.setType("image/*")
-        i.setAction(Intent.ACTION_GET_CONTENT)
-
-        // pass the constant to compare it
-        // with the returned requestCode
-        startActivityForResult(Intent.createChooser(i, "Select Picture"), SELECT_PICTURE)
+    private fun pickImage() {
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+        intent.setType("image/*")
+        startActivityForResult(intent, SELECT_PICTURE)
     }
 
-    // this function is triggered when user
-    // selects the image from the imageChooser
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_OK) {
-
-            // compare the resultCode with the
-            // SELECT_PICTURE constant
-            if (requestCode == SELECT_PICTURE) {
-                // Get the url of the image from data
-                val selectedImageUri = data?.data
-                if (null != selectedImageUri) {
-                    // update the preview image in the layout
-                    bSelectImage.setImageURI(selectedImageUri)
-                    imgPath = selectedImageUri.toString()
-                    Log.w("TAG", imgPath!!)
-                }
+        if (requestCode == SELECT_PICTURE && resultCode == RESULT_OK) {
+            if (data != null && data.data != null) {
+                val selectedImageUri = data.data
+                bSelectImage.setImageURI(selectedImageUri)
+                imageUri = selectedImageUri
+                Log.w("URI", imageUri.toString())
             }
+        }
+    }
+
+    private fun saveImage(imageUri: Uri?) {
+        try {
+            val inputStream = contentResolver.openInputStream(imageUri!!)
+            imgPath = UUID.randomUUID().toString() + ".jpg"
+            Log.w("UUID", imgPath!!)
+            val outputFile = File(filesDir, imgPath)
+            val outputStream: OutputStream = FileOutputStream(outputFile)
+            val buffer = ByteArray(1024)
+            var bytesRead: Int
+            while (inputStream!!.read(buffer).also { bytesRead = it } != -1) {
+                outputStream.write(buffer, 0, bytesRead)
+            }
+            outputStream.close()
+            inputStream.close()
+        } catch (e: IOException) {
+            e.printStackTrace()
         }
     }
 
@@ -103,7 +109,6 @@ class EditQuestion : AppCompatActivity() {
         }
         val navigationView = findViewById<NavigationView>(R.id.navigation)
         navigationView.setNavigationItemSelectedListener { menuItem ->
-            // Handle menu item selected
             menuItem.isChecked = true
             drawerLayout.close()
             if (menuItem.itemId == R.id.mainMenu) {
