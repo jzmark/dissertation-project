@@ -45,4 +45,6 @@
     <string name="other_answer">Other answer (incorrect)</string>
     <string name="submit">Submit</string>
     <string name="delete">Delete</string>
+    <string name="emptyFields">Please check if all fields are non-empty before submitting.</string>
+    <string name="noPhoto">Please upload the photo.</string>
 </resources>

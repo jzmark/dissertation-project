@@ -4,12 +4,14 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.marekj.remaidy.R
 import com.marekj.remaidy.database.QuestionDatabase
@@ -55,11 +57,28 @@ class EditQuestion : AppCompatActivity() {
             val answer2 = findViewById<TextInputEditText>(R.id.answer2TextField).text.toString()
             val answer3 = findViewById<TextInputEditText>(R.id.answer3TextField).text.toString()
             val answer4 = findViewById<TextInputEditText>(R.id.answer4TextField).text.toString()
-            saveImage(imageUri)
-            db.addQuestion(QuestionEntity("-1", description, answer1Correct, answer2,
-                answer3, answer4, imgPath!!))
-            startActivity(Intent(this, QuestionsList::class.java))
-            finish()
+            if (description == "" || answer1Correct == "" || answer2 == ""
+                || answer3 == "" || answer4 == "") {
+                Snackbar.make(
+                    findViewById(R.id.submitButton), getString(R.string.emptyFields),
+                    Snackbar.LENGTH_SHORT
+                )
+                    .show()
+            }
+            else if (imageUri == null) {
+                Snackbar.make(
+                    findViewById(R.id.submitButton), getString(R.string.noPhoto),
+                    Snackbar.LENGTH_SHORT
+                )
+                    .show()
+            }
+            else {
+                saveImage(imageUri)
+                db.addQuestion(QuestionEntity("-1", description, answer1Correct, answer2,
+                    answer3, answer4, imgPath!!))
+                startActivity(Intent(this, QuestionsList::class.java))
+                finish()
+            }
         }
     }
 
