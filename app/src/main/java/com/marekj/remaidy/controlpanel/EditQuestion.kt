@@ -46,6 +46,26 @@ class EditQuestion : AppCompatActivity() {
             pickImage()
         }
         submitListener()
+        val extras = intent.extras
+        if (extras != null) {
+            val value = extras.getString("id")!!
+            editQuestionMode(value)
+        }
+    }
+
+    private fun editQuestionMode(id : String) {
+        Log.w("ID", id)
+        val db = QuestionDatabase(this)
+        val question = db.getQuestionByID(id)
+        findViewById<TextInputEditText>(R.id.descriptionText).setText(question!!.description)
+        findViewById<TextInputEditText>(R.id.answer1CorrectTextField).setText(question!!.answer1Correct)
+        findViewById<TextInputEditText>(R.id.answer2TextField).setText(question!!.answer2)
+        findViewById<TextInputEditText>(R.id.answer3TextField).setText(question!!.answer3)
+        findViewById<TextInputEditText>(R.id.answer4TextField).setText(question!!.answer4)
+        val imageFile = File(filesDir, question!!.imgPath)
+        val imgUri = Uri.fromFile(imageFile)
+        bSelectImage.setImageURI(imgUri)
+        imageUri = imgUri
     }
 
     private fun submitListener() {
@@ -95,7 +115,7 @@ class EditQuestion : AppCompatActivity() {
                 val selectedImageUri = data.data
                 bSelectImage.setImageURI(selectedImageUri)
                 imageUri = selectedImageUri
-                Log.w("URI", imageUri.toString())
+                //Log.w("URI", imageUri.toString())
             }
         }
     }
@@ -104,7 +124,7 @@ class EditQuestion : AppCompatActivity() {
         try {
             val inputStream = contentResolver.openInputStream(imageUri!!)
             imgPath = UUID.randomUUID().toString() + ".jpg"
-            Log.w("UUID", imgPath!!)
+            //Log.w("UUID", imgPath!!)
             val outputFile = File(filesDir, imgPath)
             val outputStream: OutputStream = FileOutputStream(outputFile)
             val buffer = ByteArray(1024)

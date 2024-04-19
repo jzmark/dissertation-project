@@ -114,6 +114,27 @@ class QuestionDatabase(context: Context?) :
         return questions
     }
 
+    fun getQuestionByID(id: String): QuestionEntity? {
+        val db = this.readableDatabase
+
+        val cursorReviews = db.rawQuery(
+            "SELECT * FROM $TABLE_NAME WHERE " +
+                    "$ID_COL like '$id'", null
+        )
+
+        if (cursorReviews.moveToFirst()) {
+            return QuestionEntity(
+                cursorReviews.getString(0), cursorReviews.getString(1),
+                cursorReviews.getString(2), cursorReviews.getString(3),
+                cursorReviews.getString(4), cursorReviews.getString(5),
+                cursorReviews.getString(6)
+            )
+        }
+        cursorReviews.close()
+        db.close()
+        return null
+    }
+
 //    fun getReviewsByRestaurantId(restaurantId: String): ArrayList<ReviewEntity> {
 //        val db = this.readableDatabase
 //
