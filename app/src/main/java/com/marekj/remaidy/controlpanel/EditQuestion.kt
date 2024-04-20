@@ -24,9 +24,6 @@ import java.io.OutputStream
 import java.util.UUID
 
 
-
-
-
 class EditQuestion : AppCompatActivity() {
 
     // One Button
@@ -45,11 +42,29 @@ class EditQuestion : AppCompatActivity() {
         bSelectImage.setOnClickListener {
             pickImage()
         }
-        submitListener()
         val extras = intent.extras
         if (extras != null) {
             val value = extras.getString("id")!!
             editQuestionMode(value)
+            val submitButton = findViewById<Button>(R.id.submitButton)
+            submitButton.visibility = View.INVISIBLE
+            deleteListener(value)
+        }
+        else {
+            submitListener()
+            val deleteButton = findViewById<Button>(R.id.deleteButton)
+            deleteButton.visibility = View.INVISIBLE
+        }
+    }
+
+    private fun deleteListener(id : String) {
+        val button = findViewById<Button>(R.id.deleteButton)
+        button.setOnClickListener {
+            val db = QuestionDatabase(this)
+            deleteImage(db.getQuestionByID(id)!!.imgPath)
+            db.deleteQuestion(id)
+            startActivity(Intent(this, QuestionsList::class.java))
+            finish()
         }
     }
 
@@ -65,7 +80,6 @@ class EditQuestion : AppCompatActivity() {
         val imageFile = File(filesDir, question!!.imgPath)
         val imgUri = Uri.fromFile(imageFile)
         bSelectImage.setImageURI(imgUri)
-        imageUri = imgUri
     }
 
     private fun submitListener() {
@@ -137,6 +151,11 @@ class EditQuestion : AppCompatActivity() {
         } catch (e: IOException) {
             e.printStackTrace()
         }
+    }
+
+    private fun deleteImage(imgPath : String) {
+        val file = File(filesDir, imgPath)
+        file.delete()
     }
 
 

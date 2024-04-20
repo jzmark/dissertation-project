@@ -135,6 +135,11 @@ class QuestionDatabase(context: Context?) :
         return null
     }
 
+    fun deleteQuestion(id: String) {
+        val db = this.writableDatabase
+        db.execSQL("DELETE FROM $TABLE_NAME WHERE $ID_COL = $id")
+    }
+
 //    fun getReviewsByRestaurantId(restaurantId: String): ArrayList<ReviewEntity> {
 //        val db = this.readableDatabase
 //
