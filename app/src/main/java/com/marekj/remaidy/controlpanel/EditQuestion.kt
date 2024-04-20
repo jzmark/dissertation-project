@@ -26,14 +26,11 @@ import java.util.UUID
 
 class EditQuestion : AppCompatActivity() {
 
-    // One Button
-    lateinit var bSelectImage : ImageView
-    var imgPath : String? = null
-    var imageUri : Uri? = null
+    private lateinit var bSelectImage : ImageView
+    private var imgPath : String? = null
+    private var imageUri : Uri? = null
 
-    // constant to compare
-    // the activity result code
-    var SELECT_PICTURE = 200
+    private var SELECT_PICTURE = 200
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.edit_question)
