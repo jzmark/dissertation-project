@@ -1,6 +1,8 @@
 package com.marekj.remaidy.controlpanel
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -134,20 +136,36 @@ class EditQuestion : AppCompatActivity() {
     private fun saveImage(imageUri: Uri?) {
         try {
             val inputStream = contentResolver.openInputStream(imageUri!!)
+            val bitmap = BitmapFactory.decodeStream(inputStream)
+            inputStream?.close()
+            val resizedBitmap = resizeBitmap(bitmap, 600) // Pass the desired max width or height
             imgPath = UUID.randomUUID().toString() + ".jpg"
-            //Log.w("UUID", imgPath!!)
             val outputFile = File(filesDir, imgPath)
             val outputStream: OutputStream = FileOutputStream(outputFile)
-            val buffer = ByteArray(1024)
-            var bytesRead: Int
-            while (inputStream!!.read(buffer).also { bytesRead = it } != -1) {
-                outputStream.write(buffer, 0, bytesRead)
-            }
+            resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 90, outputStream) // Adjust compression quality as needed
             outputStream.close()
-            inputStream.close()
+            bitmap.recycle()
+            resizedBitmap.recycle()
         } catch (e: IOException) {
             e.printStackTrace()
         }
+    }
+    private fun resizeBitmap(bitmap: Bitmap, maxDimension: Int): Bitmap {
+        val width = bitmap.width
+        val height = bitmap.height
+        val aspectRatio: Float = width.toFloat() / height.toFloat()
+        val newWidth: Int
+        val newHeight: Int
+
+        if (width > height) {
+            newWidth = maxDimension
+            newHeight = (maxDimension / aspectRatio).toInt()
+        } else {
+            newHeight = maxDimension
+            newWidth = (maxDimension * aspectRatio).toInt()
+        }
+
+        return Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, true)
     }
 
     private fun deleteImage(imgPath : String) {

@@ -12,6 +12,7 @@
     <string name="select_options_header">Select from options below</string>
     <string name="gallery">Gallery</string>
     <string name="upload_questions">Upload questions</string>
+    <string name="upload_questions2">Upload and edit questions</string>
     <string name="quiz">Quiz</string>
     <string name="help">Help</string>
     <string name="login_successful">You have been logged in successfully!</string>
@@ -43,8 +44,10 @@
     <string name="question_name">Question name (e.g. Where that photo was taken?)</string>
     <string name="correct_answer">Correct answer (e.g. London)</string>
     <string name="other_answer">Other answer (incorrect)</string>
+    <string name="answer">Answer</string>
     <string name="submit">Submit</string>
     <string name="delete">Delete</string>
     <string name="emptyFields">Please check if all fields are non-empty before submitting.</string>
     <string name="noPhoto">Please upload the photo.</string>
+    <string name="next">Next</string>
 </resources>

@@ -10,7 +10,7 @@
         <item
             android:id="@+id/questionsList"
             android:icon="@drawable/ic_upload_foreground"
-            android:title="@string/upload_questions" />
+            android:title="@string/upload_questions2" />
     </group>
     <group
         android:id="@+id/group2"
