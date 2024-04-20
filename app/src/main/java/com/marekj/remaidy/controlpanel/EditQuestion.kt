@@ -38,9 +38,6 @@ class EditQuestion : AppCompatActivity() {
         setContentView(R.layout.edit_question)
         drawerListener()
         bSelectImage = findViewById(R.id.imageUpload)
-        bSelectImage.setOnClickListener {
-            pickImage()
-        }
         val extras = intent.extras
         if (extras != null) {
             val value = extras.getString("id")!!
@@ -51,6 +48,9 @@ class EditQuestion : AppCompatActivity() {
         }
         else {
             submitListener()
+            bSelectImage.setOnClickListener {
+                pickImage()
+            }
             val deleteButton = findViewById<Button>(R.id.deleteButton)
             deleteButton.visibility = View.INVISIBLE
         }
@@ -72,10 +72,15 @@ class EditQuestion : AppCompatActivity() {
         val db = QuestionDatabase(this)
         val question = db.getQuestionByID(id)
         findViewById<TextInputEditText>(R.id.descriptionText).setText(question!!.description)
+        findViewById<TextInputEditText>(R.id.descriptionText).isEnabled = false
         findViewById<TextInputEditText>(R.id.answer1CorrectTextField).setText(question!!.answer1Correct)
+        findViewById<TextInputEditText>(R.id.answer1CorrectTextField).isEnabled = false
         findViewById<TextInputEditText>(R.id.answer2TextField).setText(question!!.answer2)
+        findViewById<TextInputEditText>(R.id.answer2TextField).isEnabled = false
         findViewById<TextInputEditText>(R.id.answer3TextField).setText(question!!.answer3)
+        findViewById<TextInputEditText>(R.id.answer3TextField).isEnabled = false
         findViewById<TextInputEditText>(R.id.answer4TextField).setText(question!!.answer4)
+        findViewById<TextInputEditText>(R.id.answer4TextField).isEnabled = false
         val imageFile = File(filesDir, question!!.imgPath)
         val imgUri = Uri.fromFile(imageFile)
         bSelectImage.setImageURI(imgUri)
@@ -105,6 +110,13 @@ class EditQuestion : AppCompatActivity() {
                 )
                     .show()
             }
+            else if (!areAnswersDistinct(answer1Correct, answer2, answer3, answer4)) {
+                Snackbar.make(
+                    findViewById(R.id.submitButton), getString(R.string.notDistinctiveAnswers),
+                    Snackbar.LENGTH_SHORT
+                )
+                    .show()
+            }
             else {
                 saveImage(imageUri)
                 db.addQuestion(QuestionEntity("-1", description, answer1Correct, answer2,
@@ -113,6 +125,26 @@ class EditQuestion : AppCompatActivity() {
                 finish()
             }
         }
+    }
+
+    private fun areAnswersDistinct(answer1 : String, answer2 : String,
+                                   answer3 : String, answer4 : String) : Boolean {
+        if (answer1 == answer2) {
+            return false
+        }
+        if (answer1 == answer3) {
+            return false
+        }
+        if (answer1 == answer4) {
+            return false
+        }
+        if (answer2 == answer3) {
+            return false
+        }
+        if (answer2 == answer4) {
+            return false
+        }
+        return answer3 != answer4
     }
 
     private fun pickImage() {
