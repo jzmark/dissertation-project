@@ -6,7 +6,7 @@ class QuizQuestionEntity(
     val answer1: String = "null", val answer2: String = "null",
     val answer3: String = "null", val answer4: String = "null",
     val imgPath: String = "null", val correctAnswerID: String = "null",
-    val isAnsweredCorrectly: String = "false"
+    var isAnsweredCorrectly: String = "null"
 ) {
 
 

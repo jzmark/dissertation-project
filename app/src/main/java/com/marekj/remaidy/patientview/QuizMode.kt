@@ -26,12 +26,31 @@ class QuizMode : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.display_question)
         question = QuizDatabase(this).getQuestionAndUpdate()
+        question.isAnsweredCorrectly = "true"
         initialiseLayout()
         drawerListener()
         answer1Listener()
         answer2Listener()
         answer3Listener()
         answer4Listener()
+        nextButtonListener()
+    }
+
+    private fun nextButtonListener() {
+        val nextButton = findViewById<Button>(R.id.nextButton)
+        nextButton.setOnClickListener {
+            val db = QuizDatabase(this)
+            if (!db.finishQuestion(question)) {
+                val nextQuestion = Intent(this, QuizMode::class.java)
+                startActivity(nextQuestion)
+                finish()
+            }
+            else {
+                val finish = Intent(this, MainMenu::class.java)
+                startActivity(finish)
+                finish()
+            }
+        }
     }
 
     private fun initialiseLayout() {
@@ -60,7 +79,7 @@ class QuizMode : AppCompatActivity() {
             .getIdentifier(correctId, "id", packageName))
         btn.setBackgroundColor(Color.GREEN)
         btn.setTextColor(Color.BLACK)
-
+        question.isAnsweredCorrectly = "false"
     }
 
     private fun answer1Listener() {

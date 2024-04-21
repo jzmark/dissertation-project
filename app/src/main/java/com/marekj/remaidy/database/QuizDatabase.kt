@@ -3,6 +3,7 @@ package com.marekj.remaidy.database
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 import java.util.Collections
 
 class QuizDatabase(context: Context?) :
@@ -18,9 +19,9 @@ class QuizDatabase(context: Context?) :
         private const val ANSWER3 = "answer3"
         private const val ANSWER4 = "answer4"
         private const val IMG_PATH = "imgpath"
-        private const val CORRECT_ANSWER_ID = "correctanswerid"
-        private const val IS_ANSWERED_CORRECTLY = "iscorrectlyanswered"
-        private const val WAS_ANSWERED = "wasanswered"
+        private const val CORRECT_ANSWER_ID = "correctAnswerId"
+        private const val IS_ANSWERED_CORRECTLY = "isCorrectlyAnswered"
+        private const val WAS_ANSWERED = "wasAnswered"
     }
 
 
@@ -96,9 +97,26 @@ class QuizDatabase(context: Context?) :
 
         }
         cursorReviews.close()
-        db.execSQL("UPDATE $TABLE_NAME SET $WAS_ANSWERED = 'true' WHERE $ID_COL = ${question!!.id}")
         db.close()
         return question!!
+    }
+
+    fun finishQuestion(question : QuizQuestionEntity) : Boolean {
+        val db = this.readableDatabase
+        db.execSQL("UPDATE $TABLE_NAME SET $IS_ANSWERED_CORRECTLY = '${question!!.isAnsweredCorrectly}' " +
+                "WHERE $ID_COL = ${question!!.id}")
+        db.execSQL("UPDATE $TABLE_NAME SET $WAS_ANSWERED = 'true' WHERE $ID_COL = ${question!!.id}")
+        val cursorNumberOfUnansweredQuestions = db.rawQuery(
+            "SELECT COUNT(*) FROM $TABLE_NAME WHERE $WAS_ANSWERED = 'false'", null
+        )
+        var numberOfUnansweredQuestions = 0
+        if (cursorNumberOfUnansweredQuestions.moveToFirst()) {
+            numberOfUnansweredQuestions = cursorNumberOfUnansweredQuestions.getString(0).toInt()
+        }
+        db.close()
+        // if number of unanswered questions is equal to 0 it will return true and trigger finishing
+        // the quiz in QuizMode nextButtonListener() method
+        return numberOfUnansweredQuestions == 0
     }
 
 //    fun getQuestionByID(id: String): QuestionEntity? {
