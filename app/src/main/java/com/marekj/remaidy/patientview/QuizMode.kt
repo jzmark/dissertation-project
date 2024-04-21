@@ -24,6 +24,10 @@ class QuizMode : AppCompatActivity() {
         question = QuizDatabase(this).getQuestionAndUpdate()
         initialiseLayout()
         drawerListener()
+        answer1Listener()
+        answer2Listener()
+        answer3Listener()
+        answer4Listener()
     }
 
     private fun initialiseLayout() {
@@ -35,6 +39,54 @@ class QuizMode : AppCompatActivity() {
         findViewById<Button>(R.id.ans2).text = question.answer2
         findViewById<Button>(R.id.ans3).text = question.answer3
         findViewById<Button>(R.id.ans4).text = question.answer4
+    }
+
+    private fun answer1Listener() {
+        val button = findViewById<Button>(R.id.ans1)
+        button.setOnClickListener {
+            if (question.correctAnswerID == "1") {
+                findViewById<TextView>(R.id.questionDescription).text = "CORRECT"
+            }
+            else {
+                findViewById<TextView>(R.id.questionDescription).text = "INCORRECT"
+            }
+        }
+    }
+
+    private fun answer2Listener() {
+        val button = findViewById<Button>(R.id.ans2)
+        button.setOnClickListener {
+            if (question.correctAnswerID == "2") {
+                findViewById<TextView>(R.id.questionDescription).text = "CORRECT"
+            }
+            else {
+                findViewById<TextView>(R.id.questionDescription).text = "INCORRECT"
+            }
+        }
+    }
+
+    private fun answer3Listener() {
+        val button = findViewById<Button>(R.id.ans3)
+        button.setOnClickListener {
+            if (question.correctAnswerID == "3") {
+                findViewById<TextView>(R.id.questionDescription).text = "CORRECT"
+            }
+            else {
+                findViewById<TextView>(R.id.questionDescription).text = "INCORRECT"
+            }
+        }
+    }
+
+    private fun answer4Listener() {
+        val button = findViewById<Button>(R.id.ans4)
+        button.setOnClickListener {
+            if (question.correctAnswerID == "4") {
+                findViewById<TextView>(R.id.questionDescription).text = "CORRECT"
+            }
+            else {
+                findViewById<TextView>(R.id.questionDescription).text = "INCORRECT"
+            }
+        }
     }
 
     private fun drawerListener() {
