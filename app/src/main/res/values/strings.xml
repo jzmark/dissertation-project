@@ -51,4 +51,7 @@
     <string name="noPhoto">Please upload the photo.</string>
     <string name="next">Next</string>
     <string name="notDistinctiveAnswers">Please make sure all answers are distinct.</string>
+    <string name="congratulations">Congratulations! You\'ve completed your quiz!</string>
+    <string name="placeholder">Placeholder</string>
+    <string name="end_quiz">Quiz summary</string>
 </resources>
