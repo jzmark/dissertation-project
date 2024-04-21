@@ -10,18 +10,33 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationView
 import com.marekj.remaidy.R
 import com.marekj.remaidy.controlpanel.ControlPanel
+import com.marekj.remaidy.database.QuestionDatabase
+import com.marekj.remaidy.database.QuestionEntity
+import com.marekj.remaidy.database.QuizDatabase
 
 class MainMenu : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_menu)
         drawerListener()
-        buttonListener()
+        settingsButton()
+        quizButton()
     }
 
-    private fun buttonListener() {
-        val button = findViewById<Button>(R.id.mainMenuButton)
-        button.setOnClickListener() {
+    private fun quizButton() {
+        val button = findViewById<Button>(R.id.startQuizButton)
+        button.setOnClickListener {
+            QuizDatabase(this).purge()
+            QuizDatabase(this).addQuestions(QuestionDatabase(this).getQuestions())
+            val quiz = Intent(this, QuizMode::class.java)
+            startActivity(quiz)
+            finish()
+        }
+    }
+
+    private fun settingsButton() {
+        val button = findViewById<Button>(R.id.settingsButton)
+        button.setOnClickListener {
             startActivity(Intent(Settings.ACTION_DISPLAY_SETTINGS))
         }
     }
