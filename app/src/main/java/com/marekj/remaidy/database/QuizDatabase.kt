@@ -3,8 +3,6 @@ package com.marekj.remaidy.database
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.util.Log
-import java.util.Collections
 
 class QuizDatabase(context: Context?) :
     SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
@@ -53,7 +51,7 @@ class QuizDatabase(context: Context?) :
             answers.add(q.answer4)
             answers.shuffle()
             val correctAnswerString = q.answer1Correct
-            var correctId : Int = 0
+            var correctId = 0
             for (i in 0 until answers.size) {
                 if (answers[i] == correctAnswerString) {
                     correctId = i + 1
@@ -106,6 +104,21 @@ class QuizDatabase(context: Context?) :
         db.execSQL("UPDATE $TABLE_NAME SET $IS_ANSWERED_CORRECTLY = '${question!!.isAnsweredCorrectly}' " +
                 "WHERE $ID_COL = ${question!!.id}")
         db.execSQL("UPDATE $TABLE_NAME SET $WAS_ANSWERED = 'true' WHERE $ID_COL = ${question!!.id}")
+
+        // if number of unanswered questions is equal to 0 it will return true and trigger finishing
+        // the quiz in QuizMode nextButtonListener() method
+        return numberOfUnansweredQuestions() == 0
+    }
+
+    fun finishQuizStats() : ArrayList<Int> {
+        val array : ArrayList<Int> = ArrayList()
+        array.add(numberOfQuestions())
+        array.add(numberOfCorrectQuestions())
+        return array
+    }
+
+    private fun numberOfUnansweredQuestions() : Int {
+        val db = this.readableDatabase
         val cursorNumberOfUnansweredQuestions = db.rawQuery(
             "SELECT COUNT(*) FROM $TABLE_NAME WHERE $WAS_ANSWERED = 'false'", null
         )
@@ -114,10 +127,35 @@ class QuizDatabase(context: Context?) :
             numberOfUnansweredQuestions = cursorNumberOfUnansweredQuestions.getString(0).toInt()
         }
         db.close()
-        // if number of unanswered questions is equal to 0 it will return true and trigger finishing
-        // the quiz in QuizMode nextButtonListener() method
-        return numberOfUnansweredQuestions == 0
+        return numberOfUnansweredQuestions
     }
+
+    private fun numberOfQuestions() : Int {
+        val db = this.readableDatabase
+        val cursorNumberOfUnansweredQuestions = db.rawQuery(
+            "SELECT COUNT(*) FROM $TABLE_NAME", null
+        )
+        var numberOfQuestions = 0
+        if (cursorNumberOfUnansweredQuestions.moveToFirst()) {
+            numberOfQuestions = cursorNumberOfUnansweredQuestions.getString(0).toInt()
+        }
+        db.close()
+        return numberOfQuestions
+    }
+
+    private fun numberOfCorrectQuestions() : Int {
+        val db = this.readableDatabase
+        val cursorNumberOfUnansweredQuestions = db.rawQuery(
+            "SELECT COUNT(*) FROM $TABLE_NAME WHERE $IS_ANSWERED_CORRECTLY = 'true'", null
+        )
+        var numOfCorrectQuestions = 0
+        if (cursorNumberOfUnansweredQuestions.moveToFirst()) {
+            numOfCorrectQuestions = cursorNumberOfUnansweredQuestions.getString(0).toInt()
+        }
+        db.close()
+        return numOfCorrectQuestions
+    }
+
 
 //    fun getQuestionByID(id: String): QuestionEntity? {
 //        val db = this.readableDatabase

@@ -1,7 +1,6 @@
 package com.marekj.remaidy.patientview
 
 import android.content.Intent
-import android.content.res.Resources
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
@@ -10,14 +9,15 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationView
 import com.marekj.remaidy.R
 import com.marekj.remaidy.controlpanel.ControlPanel
+import com.marekj.remaidy.database.HistoryDatabase
 import com.marekj.remaidy.database.QuizDatabase
 import com.marekj.remaidy.database.QuizQuestionEntity
+import com.marekj.remaidy.database.QuizSummaryEntity
 import java.io.File
 
 class QuizMode : AppCompatActivity() {
@@ -46,6 +46,11 @@ class QuizMode : AppCompatActivity() {
                 finish()
             }
             else {
+                val dbQuiz = QuizDatabase(this)
+                val quizSummary = dbQuiz.finishQuizStats()
+                val dbHistory = HistoryDatabase(this)
+                dbHistory.addQuiz(QuizSummaryEntity("-1", quizSummary[0].toString(),
+                    quizSummary[1].toString()))
                 val finish = Intent(this, MainMenu::class.java)
                 startActivity(finish)
                 finish()
