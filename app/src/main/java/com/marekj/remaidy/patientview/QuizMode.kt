@@ -1,12 +1,16 @@
 package com.marekj.remaidy.patientview
 
 import android.content.Intent
+import android.content.res.Resources
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationView
@@ -39,17 +43,37 @@ class QuizMode : AppCompatActivity() {
         findViewById<Button>(R.id.ans2).text = question.answer2
         findViewById<Button>(R.id.ans3).text = question.answer3
         findViewById<Button>(R.id.ans4).text = question.answer4
+        findViewById<Button>(R.id.nextButton).isEnabled = false
+    }
+
+    private fun buttonsChangeState() {
+        findViewById<Button>(R.id.ans1).isEnabled = false
+        findViewById<Button>(R.id.ans2).isEnabled = false
+        findViewById<Button>(R.id.ans3).isEnabled = false
+        findViewById<Button>(R.id.ans4).isEnabled = false
+        findViewById<Button>(R.id.nextButton).isEnabled = true
+    }
+
+    private fun highlightCorrect() {
+        val correctId = "ans" + question.correctAnswerID
+        val btn = findViewById<Button>(resources
+            .getIdentifier(correctId, "id", packageName))
+        btn.setBackgroundColor(Color.GREEN)
+        btn.setTextColor(Color.BLACK)
+
     }
 
     private fun answer1Listener() {
         val button = findViewById<Button>(R.id.ans1)
         button.setOnClickListener {
             if (question.correctAnswerID == "1") {
-                findViewById<TextView>(R.id.questionDescription).text = "CORRECT"
+                button.setBackgroundColor(Color.GREEN)
             }
             else {
-                findViewById<TextView>(R.id.questionDescription).text = "INCORRECT"
+                button.setBackgroundColor(Color.RED)
+                highlightCorrect()
             }
+            buttonsChangeState()
         }
     }
 
@@ -57,11 +81,13 @@ class QuizMode : AppCompatActivity() {
         val button = findViewById<Button>(R.id.ans2)
         button.setOnClickListener {
             if (question.correctAnswerID == "2") {
-                findViewById<TextView>(R.id.questionDescription).text = "CORRECT"
+                button.setBackgroundColor(Color.GREEN)
             }
             else {
-                findViewById<TextView>(R.id.questionDescription).text = "INCORRECT"
+                button.setBackgroundColor(Color.RED)
+                highlightCorrect()
             }
+            buttonsChangeState()
         }
     }
 
@@ -69,11 +95,13 @@ class QuizMode : AppCompatActivity() {
         val button = findViewById<Button>(R.id.ans3)
         button.setOnClickListener {
             if (question.correctAnswerID == "3") {
-                findViewById<TextView>(R.id.questionDescription).text = "CORRECT"
+                button.setBackgroundColor(Color.GREEN)
             }
             else {
-                findViewById<TextView>(R.id.questionDescription).text = "INCORRECT"
+                button.setBackgroundColor(Color.RED)
+                highlightCorrect()
             }
+            buttonsChangeState()
         }
     }
 
@@ -81,11 +109,13 @@ class QuizMode : AppCompatActivity() {
         val button = findViewById<Button>(R.id.ans4)
         button.setOnClickListener {
             if (question.correctAnswerID == "4") {
-                findViewById<TextView>(R.id.questionDescription).text = "CORRECT"
+                button.setBackgroundColor(Color.GREEN)
             }
             else {
-                findViewById<TextView>(R.id.questionDescription).text = "INCORRECT"
+                button.setBackgroundColor(Color.RED)
+                highlightCorrect()
             }
+            buttonsChangeState()
         }
     }
 
