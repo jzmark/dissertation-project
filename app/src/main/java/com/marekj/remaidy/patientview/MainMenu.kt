@@ -29,7 +29,6 @@ class MainMenu : AppCompatActivity() {
             QuizDatabase(this).addQuestions(QuestionDatabase(this).getQuestions())
             val quiz = Intent(this, QuizMode::class.java)
             startActivity(quiz)
-            finish()
         }
     }
 
@@ -48,7 +47,7 @@ class MainMenu : AppCompatActivity() {
         val navigationView = findViewById<NavigationView>(R.id.navigation)
         navigationView.setNavigationItemSelectedListener { menuItem ->
             // Handle menu item selected
-            menuItem.isChecked = true
+            menuItem.isChecked = false
             drawerLayout.close()
             if (menuItem.itemId == R.id.mainMenu) {
                 val menuIntent = Intent(this, MainMenu::class.java)
@@ -59,7 +58,6 @@ class MainMenu : AppCompatActivity() {
             if (menuItem.itemId == R.id.controlPanel) {
                 val menuIntent = Intent(this, ControlPanel::class.java)
                 startActivity(menuIntent)
-                finish()
                 false
             }
             else {

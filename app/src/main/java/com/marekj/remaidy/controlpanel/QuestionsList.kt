@@ -37,6 +37,7 @@ class QuestionsList : AppCompatActivity() {
         button.setOnClickListener() {
             val menuIntent = Intent(this, EditQuestion::class.java)
             startActivity(menuIntent)
+            finish()
         }
     }
     private fun drawerListener() {
