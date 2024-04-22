@@ -14,7 +14,7 @@ import com.marekj.remaidy.patientview.MainMenu
 import com.marekj.remaidy.R
 import com.marekj.remaidy.database.QuestionDatabase
 import com.marekj.remaidy.recyclerview.QuestionListAdapter
-import com.marekj.restaurantreview.recyclerview.RecyclerViewModel
+import com.marekj.restaurantreview.recyclerview.QuestionListRVModel
 
 class QuestionsList : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,14 +77,14 @@ class QuestionsList : AppCompatActivity() {
             }
         }
     }
-    private fun populateList(): ArrayList<RecyclerViewModel> {
+    private fun populateList(): ArrayList<QuestionListRVModel> {
         val questionDatabase = QuestionDatabase(this)
         val questionList = questionDatabase.getQuestions()
 
-        val list = ArrayList<RecyclerViewModel>()
+        val list = ArrayList<QuestionListRVModel>()
 
         for (i in 0..<questionList.size) {
-            val imageModel = RecyclerViewModel()
+            val imageModel = QuestionListRVModel()
             imageModel.setNames(questionList[i].description)
             imageModel.setImages(questionList[i].imgPath)
             imageModel.setDescription(questionList[i].description)

@@ -9,17 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.marekj.remaidy.R
 import com.marekj.remaidy.controlpanel.EditQuestion
-import com.marekj.restaurantreview.recyclerview.RecyclerViewModel
+import com.marekj.restaurantreview.recyclerview.QuestionListRVModel
 import java.io.File
 
 
 
 
-class QuestionListAdapter(private val imageModelArrayList: MutableList<RecyclerViewModel>,
+class QuestionListAdapter(private val imageModelArrayList: MutableList<QuestionListRVModel>,
                           private val context: Context) :
     RecyclerView.Adapter<QuestionListAdapter.ViewHolder>() {
 

@@ -3,7 +3,7 @@ package com.marekj.restaurantreview.recyclerview
 /*
  * Data model class to store logos and team names from F1
  */
-class RecyclerViewModel {
+class QuestionListRVModel {
     private var modelName: String? = null
     private var modelDescription: String? = null
     private var modelImage: String? = null
