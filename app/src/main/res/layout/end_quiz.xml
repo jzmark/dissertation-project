@@ -89,7 +89,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <Button
-                android:id="@+id/startQuizButton"
+                android:id="@+id/mainMenuButton"
                 android:layout_width="310dp"
                 android:layout_height="96dp"
                 android:layout_marginTop="30dp"

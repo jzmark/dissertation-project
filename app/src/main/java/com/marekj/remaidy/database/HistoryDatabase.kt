@@ -35,6 +35,7 @@ class HistoryDatabase(context: Context?) :
                     "VALUES('${q.totalAnswers}', " +
                     "'${q.totalCorrectAnswers}')"
         )
+        db.close()
     }
 
 

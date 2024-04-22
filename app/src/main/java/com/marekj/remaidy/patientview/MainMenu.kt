@@ -11,7 +11,6 @@ import com.google.android.material.navigation.NavigationView
 import com.marekj.remaidy.R
 import com.marekj.remaidy.controlpanel.ControlPanel
 import com.marekj.remaidy.database.QuestionDatabase
-import com.marekj.remaidy.database.QuestionEntity
 import com.marekj.remaidy.database.QuizDatabase
 
 class MainMenu : AppCompatActivity() {
@@ -24,7 +23,7 @@ class MainMenu : AppCompatActivity() {
     }
 
     private fun quizButton() {
-        val button = findViewById<Button>(R.id.startQuizButton)
+        val button = findViewById<Button>(R.id.mainMenuButton)
         button.setOnClickListener {
             QuizDatabase(this).purge()
             QuizDatabase(this).addQuestions(QuestionDatabase(this).getQuestions())

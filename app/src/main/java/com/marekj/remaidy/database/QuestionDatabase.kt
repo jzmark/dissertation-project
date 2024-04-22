@@ -45,6 +45,7 @@ class QuestionDatabase(context: Context?) :
                     "'${question.answer3.replace("'","''")}', " +
                     "'${question.answer4.replace("'","''")}', '${question.imgPath}')"
         )
+        db.close()
     }
 
     fun getQuestions(): ArrayList<QuestionEntity> {
@@ -96,6 +97,7 @@ class QuestionDatabase(context: Context?) :
     fun deleteQuestion(id: String) {
         val db = this.writableDatabase
         db.execSQL("DELETE FROM $TABLE_NAME WHERE $ID_COL = $id")
+        db.close()
     }
 
 

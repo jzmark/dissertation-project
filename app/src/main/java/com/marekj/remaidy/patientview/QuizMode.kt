@@ -49,9 +49,8 @@ class QuizMode : AppCompatActivity() {
                 val dbQuiz = QuizDatabase(this)
                 val quizSummary = dbQuiz.finishQuizStats()
                 val dbHistory = HistoryDatabase(this)
-                dbHistory.addQuiz(QuizSummaryEntity("-1", quizSummary[0].toString(),
-                    quizSummary[1].toString()))
-                val finish = Intent(this, MainMenu::class.java)
+                dbHistory.addQuiz(quizSummary)
+                val finish = Intent(this, EndQuiz::class.java)
                 startActivity(finish)
                 finish()
             }

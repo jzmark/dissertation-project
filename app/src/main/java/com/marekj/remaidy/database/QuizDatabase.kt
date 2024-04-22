@@ -69,6 +69,7 @@ class QuizDatabase(context: Context?) :
                         "'${correctId}','null','false')"
             )
         }
+        db.close()
     }
 
     fun purge() {
@@ -104,17 +105,18 @@ class QuizDatabase(context: Context?) :
         db.execSQL("UPDATE $TABLE_NAME SET $IS_ANSWERED_CORRECTLY = '${question!!.isAnsweredCorrectly}' " +
                 "WHERE $ID_COL = ${question!!.id}")
         db.execSQL("UPDATE $TABLE_NAME SET $WAS_ANSWERED = 'true' WHERE $ID_COL = ${question!!.id}")
+        db.close()
 
         // if number of unanswered questions is equal to 0 it will return true and trigger finishing
         // the quiz in QuizMode nextButtonListener() method
         return numberOfUnansweredQuestions() == 0
     }
 
-    fun finishQuizStats() : ArrayList<Int> {
-        val array : ArrayList<Int> = ArrayList()
-        array.add(numberOfQuestions())
-        array.add(numberOfCorrectQuestions())
-        return array
+    fun finishQuizStats(): QuizSummaryEntity {
+        return QuizSummaryEntity(
+            "null", numberOfQuestions().toString(),
+            numberOfCorrectQuestions().toString()
+        )
     }
 
     private fun numberOfUnansweredQuestions() : Int {
