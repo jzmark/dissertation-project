@@ -16,8 +16,6 @@ import com.marekj.restaurantreview.recyclerview.QuestionListRVModel
 import java.io.File
 
 
-
-
 class QuestionListAdapter(private val imageModelArrayList: MutableList<QuestionListRVModel>,
                           private val context: Context) :
     RecyclerView.Adapter<QuestionListAdapter.ViewHolder>() {

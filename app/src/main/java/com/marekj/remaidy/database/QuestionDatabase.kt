@@ -51,24 +51,24 @@ class QuestionDatabase(context: Context?) :
     fun getQuestions(): ArrayList<QuestionEntity> {
         val db = this.readableDatabase
 
-        val cursorReviews = db.rawQuery(
+        val cursorQuestions = db.rawQuery(
             "SELECT * FROM $TABLE_NAME", null
         )
 
         val questions = ArrayList<QuestionEntity>()
-        if (cursorReviews.moveToFirst()) {
+        if (cursorQuestions.moveToFirst()) {
             do {
                 questions.add(
                     QuestionEntity(
-                        cursorReviews.getString(0), cursorReviews.getString(1), cursorReviews.getString(2),
-                        cursorReviews.getString(3), cursorReviews.getString(4),
-                        cursorReviews.getString(5), cursorReviews.getString(6)
+                        cursorQuestions.getString(0), cursorQuestions.getString(1), cursorQuestions.getString(2),
+                        cursorQuestions.getString(3), cursorQuestions.getString(4),
+                        cursorQuestions.getString(5), cursorQuestions.getString(6)
                     )
                 )
-            } while (cursorReviews.moveToNext())
+            } while (cursorQuestions.moveToNext())
 
         }
-        cursorReviews.close()
+        cursorQuestions.close()
         db.close()
         return questions
     }

@@ -38,6 +38,28 @@ class HistoryDatabase(context: Context?) :
         db.close()
     }
 
+    fun getQuizzes(): ArrayList<QuizSummaryEntity> {
+        val db = this.readableDatabase
+
+        val cursorQuizList = db.rawQuery(
+            "SELECT * FROM $TABLE_NAME", null
+        )
+
+        val questions = ArrayList<QuizSummaryEntity>()
+        if (cursorQuizList.moveToFirst()) {
+            do {
+                questions.add(
+                    QuizSummaryEntity(cursorQuizList.getString(0),
+                        cursorQuizList.getString(1), cursorQuizList.getString(2))
+                )
+            } while (cursorQuizList.moveToNext())
+
+        }
+        cursorQuizList.close()
+        db.close()
+        return questions
+    }
+
 
 //    fun getQuestionByID(id: String): QuestionEntity? {
 //        val db = this.readableDatabase

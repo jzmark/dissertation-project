@@ -54,4 +54,5 @@
     <string name="congratulations">Congratulations! You\'ve completed your quiz!</string>
     <string name="placeholder">Placeholder</string>
     <string name="end_quiz">Quiz summary</string>
+    <string name="quiz_history">Quiz reports history</string>
 </resources>
