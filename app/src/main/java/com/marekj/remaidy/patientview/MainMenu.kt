@@ -8,6 +8,7 @@ import android.widget.Button
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 import com.marekj.remaidy.R
 import com.marekj.remaidy.controlpanel.ControlPanel
 import com.marekj.remaidy.controlpanel.QuestionsList
@@ -26,12 +27,23 @@ class MainMenu : AppCompatActivity() {
     private fun quizButton() {
         val button = findViewById<Button>(R.id.mainMenuButton)
         button.setOnClickListener {
-            if (QuestionDatabase(this).numberOfQuestions() > 0) {
-                QuizDatabase(this).purge()
-                QuizDatabase(this).addQuestions(QuestionDatabase(this).getQuestions())
-                val quiz = Intent(this, QuizMode::class.java)
-                startActivity(quiz)
-            }
+            openQuiz()
+        }
+    }
+
+    private fun openQuiz() {
+        if (QuestionDatabase(this).numberOfQuestions() > 0) {
+            QuizDatabase(this).purge()
+            QuizDatabase(this).addQuestions(QuestionDatabase(this).getQuestions())
+            val quiz = Intent(this, QuizMode::class.java)
+            startActivity(quiz)
+        }
+        else {
+            Snackbar.make(
+                findViewById(R.id.settingsButton), getString(R.string.no_questions_error),
+                Snackbar.LENGTH_SHORT
+            )
+                .show()
         }
     }
 
@@ -61,6 +73,10 @@ class MainMenu : AppCompatActivity() {
             if (menuItem.itemId == R.id.controlPanel) {
                 val menuIntent = Intent(this, ControlPanel::class.java)
                 startActivity(menuIntent)
+                false
+            }
+            if (menuItem.itemId == R.id.questionsDrawer) {
+                openQuiz()
                 false
             }
             else {

@@ -17,23 +17,19 @@
     <string name="login_successful">You have been logged in successfully!</string>
     <string name="main_menu_greeting">Welcome to Remaidy!</string>
     <string name="main_menu_1">This app purpose is to help you revisit your past memories.</string>
-    <string name="main_menu_2">You can do this by uploading your
-        photos using the menu on the left hand side.</string>
-    <string name="main_menu_3">For help with using this app,
-        please tap the button \'Help\' which you can find by tapping left top corner of the screen
-        at any time.</string>
+    <string name="main_menu_2">Please ask your carer for help if you are unsure what to do.</string>
+    <string name="control_panel_1">Please read instructions below.</string>
+    <string name="control_panel_2">For action menu, please press button in left top corner.</string>
     <string name="main_menu_4">If the text is too small, please press the button below.
         This will take you to the system accessibility settings where you can change
         screen and font size.</string>
     <string name="main_menu_button1">display settings</string>
     <string name="main_menu_5">To do:</string>
-    <string name="card3_2_heading">Open uploaded media</string>
-    <string name="card3_3_heading">Switch to patient mode</string>
-    <string name="card3_1_subheading">Select from your favourite media and upload
-        them by clicking button below</string>
-    <string name="card3_2_subheading">Please check if questions and photos are correct
-        before handing over the tablet to the patient</string>
-    <string name="card3_3_subheading">Hand over the tablet to the patient and start the quiz</string>
+    <string name="card3_2_heading">Check</string>
+    <string name="card3_3_heading">Reports</string>
+    <string name="card3_1_subheading">Select photos from your device in landscape aspect ratio, fill in text boxes with question description and 4 answers</string>
+    <string name="card3_2_subheading">Check uploaded questions, switch to patient mode, hand over the tablet to the patient and start the quiz</string>
+    <string name="card3_3_subheading">To access reports from each quiz, please log into control panel and tap \'Quiz reports history\'</string>
     <string name="upload">Upload</string>
     <string name="open">Open</string>
     <string name="finish">Finish</string>
@@ -54,4 +50,5 @@
     <string name="placeholder">Placeholder</string>
     <string name="end_quiz">Quiz summary</string>
     <string name="quiz_history">Quiz reports history</string>
+    <string name="no_questions_error">Please ask carer to upload questions first.</string>
 </resources>

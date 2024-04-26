@@ -3,7 +3,9 @@ package com.marekj.remaidy.controlpanel
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,6 +30,7 @@ class QuizHistoryList : AppCompatActivity() {
         val mAdapter = QuizHistoryAdapter(imageModelArrayList, this)
         recyclerView.adapter = mAdapter
         drawerListener()
+        quizStats()
     }
 
     private fun populateList(): ArrayList<QuizHistoryRVModel> {
@@ -44,6 +47,24 @@ class QuizHistoryList : AppCompatActivity() {
             list.add(imageModel)
         }
         return list
+    }
+
+    private fun quizStats() {
+        val quizHistoryDatabase = HistoryDatabase(this)
+        val list = quizHistoryDatabase.getStats()
+        if (list != null) {
+            findViewById<TextView>(R.id.historyStats1).text = String.format("Total questions answered: " +
+                    "%d", list[0])
+            findViewById<TextView>(R.id.historyStats2).text = String.format("Total correct answers: %d",
+                list[1])
+            findViewById<TextView>(R.id.historyStats3).text = String.format("Correct answers ratio: " +
+                    "%.2f%%", ((list[1] * 100.0) / list[0]))
+        }
+        else {
+            findViewById<TextView>(R.id.historyStats1).isVisible = false
+            findViewById<TextView>(R.id.historyStats2).isVisible = false
+            findViewById<TextView>(R.id.historyStats3).isVisible = false
+        }
     }
 
     private fun drawerListener() {

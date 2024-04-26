@@ -61,32 +61,37 @@ class HistoryDatabase(context: Context?) :
         return questions
     }
 
+    fun getStats(): ArrayList<Int>? {
+        val db = this.readableDatabase
 
-//    fun getQuestionByID(id: String): QuestionEntity? {
-//        val db = this.readableDatabase
-//
-//        val cursorReviews = db.rawQuery(
-//            "SELECT * FROM $TABLE_NAME WHERE " +
-//                    "$ID_COL like '$id'", null
-//        )
-//
-//        if (cursorReviews.moveToFirst()) {
-//            return QuestionEntity(
-//                cursorReviews.getString(0), cursorReviews.getString(1),
-//                cursorReviews.getString(2), cursorReviews.getString(3),
-//                cursorReviews.getString(4), cursorReviews.getString(5),
-//                cursorReviews.getString(6)
-//            )
-//        }
-//        cursorReviews.close()
-//        db.close()
-//        return null
-//    }
-//
-//    fun deleteQuestion(id: String) {
-//        val db = this.writableDatabase
-//        db.execSQL("DELETE FROM $TABLE_NAME WHERE $ID_COL = $id")
-//    }
+        val cursorSumAnsweredQuestions = db.rawQuery(
+            "SELECT SUM($TOTAL_ANSWERS) FROM $TABLE_NAME", null
+        )
+        var sumAnsQuestions = 0
+        if (cursorSumAnsweredQuestions.moveToFirst()) {
+            if (cursorSumAnsweredQuestions.getString(0) != null) {
+                sumAnsQuestions = cursorSumAnsweredQuestions.getString(0).toInt()
+            }
+            else {
+                return null
+            }
+        }
+
+        val cursorSumCorrectQuestions = db.rawQuery(
+            "SELECT SUM($TOTAL_CORRECT_ANSWERS) FROM $TABLE_NAME", null
+        )
+        var sumCorrectQuestions = 0
+        if (cursorSumCorrectQuestions.moveToFirst()) {
+            sumCorrectQuestions = cursorSumCorrectQuestions.getString(0).toInt()
+        }
+
+        val list : ArrayList<Int> = ArrayList()
+        list.add(sumAnsQuestions)
+        list.add(sumCorrectQuestions)
+        db.close()
+
+        return list
+    }
 
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {

@@ -159,33 +159,6 @@ class QuizDatabase(context: Context?) :
     }
 
 
-//    fun getQuestionByID(id: String): QuestionEntity? {
-//        val db = this.readableDatabase
-//
-//        val cursorReviews = db.rawQuery(
-//            "SELECT * FROM $TABLE_NAME WHERE " +
-//                    "$ID_COL like '$id'", null
-//        )
-//
-//        if (cursorReviews.moveToFirst()) {
-//            return QuestionEntity(
-//                cursorReviews.getString(0), cursorReviews.getString(1),
-//                cursorReviews.getString(2), cursorReviews.getString(3),
-//                cursorReviews.getString(4), cursorReviews.getString(5),
-//                cursorReviews.getString(6)
-//            )
-//        }
-//        cursorReviews.close()
-//        db.close()
-//        return null
-//    }
-//
-//    fun deleteQuestion(id: String) {
-//        val db = this.writableDatabase
-//        db.execSQL("DELETE FROM $TABLE_NAME WHERE $ID_COL = $id")
-//    }
-
-
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL("DROP TABLE IF EXISTS $TABLE_NAME")
         onCreate(db)

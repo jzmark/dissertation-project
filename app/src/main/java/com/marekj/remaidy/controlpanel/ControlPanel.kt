@@ -33,7 +33,6 @@ class ControlPanel : AppCompatActivity() {
         }
         val navigationView = findViewById<NavigationView>(R.id.navigation)
         navigationView.setNavigationItemSelectedListener { menuItem ->
-            // Handle menu item selected
             menuItem.isChecked = true
             drawerLayout.close()
             if (menuItem.itemId == R.id.mainMenu) {
