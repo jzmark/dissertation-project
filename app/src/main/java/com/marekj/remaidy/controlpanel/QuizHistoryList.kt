@@ -77,6 +77,12 @@ class QuizHistoryList : AppCompatActivity() {
                 menuItem.isChecked = false
                 false
             }
+            if (menuItem.itemId == R.id.historyDrawer) {
+                val menuIntent = Intent(this, QuizHistoryList::class.java)
+                startActivity(menuIntent)
+                menuItem.isChecked = false
+                false
+            }
             else {
                 menuItem.isChecked = false
                 false

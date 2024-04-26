@@ -14,7 +14,6 @@
     <string name="upload_questions">Upload questions</string>
     <string name="upload_questions2">Upload and edit questions</string>
     <string name="quiz">Quiz</string>
-    <string name="help">Help</string>
     <string name="login_successful">You have been logged in successfully!</string>
     <string name="main_menu_greeting">Welcome to Remaidy!</string>
     <string name="main_menu_1">This app purpose is to help you revisit your past memories.</string>
@@ -41,7 +40,7 @@
     <string name="patient_mode">Patient Mode</string>
     <string name="questions_edit_panel">Questions edit panel</string>
     <string name="edit_question">Edit question</string>
-    <string name="question_name">Question name (e.g. Where that photo was taken?)</string>
+    <string name="question_name">Question name (e.g. Where was that photo taken?)</string>
     <string name="correct_answer">Correct answer (e.g. London)</string>
     <string name="other_answer">Other answer (incorrect)</string>
     <string name="answer">Answer</string>

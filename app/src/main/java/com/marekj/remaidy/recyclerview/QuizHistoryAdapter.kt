@@ -28,7 +28,6 @@ class QuizHistoryAdapter(private val imageModelArrayList: MutableList<QuizHistor
 
         holder.dateTime.text = info.getTimeDate()
         holder.answeredQuestions.text = info.getAnswers()
-        holder.answeredQuestions.text = info.getAnswers()
         holder.correctAnsweredQuestions.text = info.getCorrectAnswers()
     }
 

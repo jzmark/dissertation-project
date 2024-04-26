@@ -22,7 +22,7 @@ class QuizHistoryRVModel {
     }
 
     fun setCorrectAnswers(correctAnswerNum : String) {
-        this.modelAnswers = correctAnswerNum
+        this.modelCorrectAnswers = correctAnswerNum
     }
 
     fun getAnswers(): String {

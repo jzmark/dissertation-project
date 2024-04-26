@@ -16,9 +16,9 @@
         android:id="@+id/group2"
         android:checkableBehavior="single">
         <item
-            android:id="@+id/helpDrawer"
-            android:icon="@drawable/ic_question_foreground"
-            android:title="@string/help" />
+            android:id="@+id/historyDrawer"
+            android:icon="@drawable/ic_checklist_24_foreground"
+            android:title="@string/quiz_history" />
         <item
             android:id="@+id/patientMode"
             android:icon="@drawable/ic_control_panel_foreground"

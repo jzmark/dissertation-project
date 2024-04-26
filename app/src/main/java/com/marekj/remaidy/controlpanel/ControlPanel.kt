@@ -3,6 +3,8 @@ package com.marekj.remaidy.controlpanel
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
+import android.widget.Button
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationView
@@ -14,14 +16,14 @@ class ControlPanel : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.control_panel)
         drawerListener()
-//        buttonListener()
+        buttonListener()
     }
 
     private fun buttonListener() {
-//        val button = findViewById<Button>(R.id.mainMenuButton)
-//        button.setOnClickListener() {
-//            startActivity(Intent(Settings.ACTION_DISPLAY_SETTINGS))
-//        }
+        val button = findViewById<Button>(R.id.settingsButton)
+        button.setOnClickListener() {
+            startActivity(Intent(Settings.ACTION_DISPLAY_SETTINGS))
+        }
     }
     private fun drawerListener() {
         val topAppBar = findViewById<MaterialToolbar>(R.id.topAppBar)
@@ -50,6 +52,12 @@ class ControlPanel : AppCompatActivity() {
             }
             if (menuItem.itemId == R.id.questionsList) {
                 val menuIntent = Intent(this, QuestionsList::class.java)
+                startActivity(menuIntent)
+                menuItem.isChecked = false
+                false
+            }
+            if (menuItem.itemId == R.id.historyDrawer) {
+                val menuIntent = Intent(this, QuizHistoryList::class.java)
                 startActivity(menuIntent)
                 menuItem.isChecked = false
                 false

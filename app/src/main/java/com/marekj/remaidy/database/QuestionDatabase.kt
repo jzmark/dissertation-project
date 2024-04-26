@@ -100,6 +100,19 @@ class QuestionDatabase(context: Context?) :
         db.close()
     }
 
+    fun numberOfQuestions() : Int {
+        val db = this.readableDatabase
+        val cursorNumberOfUnansweredQuestions = db.rawQuery(
+            "SELECT COUNT(*) FROM $TABLE_NAME", null
+        )
+        var numberOfQuestions = 0
+        if (cursorNumberOfUnansweredQuestions.moveToFirst()) {
+            numberOfQuestions = cursorNumberOfUnansweredQuestions.getString(0).toInt()
+        }
+        db.close()
+        return numberOfQuestions
+    }
+
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL("DROP TABLE IF EXISTS $TABLE_NAME")

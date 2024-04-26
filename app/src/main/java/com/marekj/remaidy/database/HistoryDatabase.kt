@@ -49,8 +49,9 @@ class HistoryDatabase(context: Context?) :
         if (cursorQuizList.moveToFirst()) {
             do {
                 questions.add(
-                    QuizSummaryEntity(cursorQuizList.getString(0),
-                        cursorQuizList.getString(1), cursorQuizList.getString(2))
+                    QuizSummaryEntity(cursorQuizList.getString(1),
+                        "Total answers: " + cursorQuizList.getString(2),
+                        "Correct answers: " + cursorQuizList.getString(3))
                 )
             } while (cursorQuizList.moveToNext())
 
