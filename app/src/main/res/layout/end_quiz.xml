@@ -70,8 +70,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="@string/placeholder"
-                            android:textAppearance="?attr/textAppearanceBody2"
-                            android:textColor="?android:attr/textColorSecondary" />
+                            android:textAppearance="?attr/textAppearanceBody2" />
 
                         <TextView
                             android:id="@+id/correctlyAnsweredQuestions"
@@ -79,8 +78,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="@string/placeholder"
-                            android:textAppearance="?attr/textAppearanceBody2"
-                            android:textColor="?android:attr/textColorSecondary" />
+                            android:textAppearance="?attr/textAppearanceBody2" />
 
                     </LinearLayout>
 

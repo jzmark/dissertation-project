@@ -69,16 +69,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="@string/control_panel_1"
-                            android:textAppearance="?attr/textAppearanceBody2"
-                            android:textColor="?android:attr/textColorSecondary" />
+                            android:textAppearance="?attr/textAppearanceBody2" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="@string/control_panel_2"
-                            android:textAppearance="?attr/textAppearanceBody2"
-                            android:textColor="?android:attr/textColorSecondary" />
+                            android:textAppearance="?attr/textAppearanceBody2" />
 
                     </LinearLayout>
 
@@ -143,6 +141,7 @@
                 android:layout_marginTop="30dp"
                 android:text="@string/main_menu_5"
                 android:textSize="22sp"
+                android:textAppearance="?attr/textAppearanceHeadline6"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/card2" />
 
@@ -191,8 +190,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
                                 android:text="@string/card3_1_subheading"
-                                android:textAppearance="?attr/textAppearanceBody2"
-                                android:textColor="?android:attr/textColorSecondary" />
+                                android:textAppearance="?attr/textAppearanceBody2" />
 
 
                         </LinearLayout>
@@ -235,8 +233,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
                                 android:text="@string/card3_2_subheading"
-                                android:textAppearance="?attr/textAppearanceBody2"
-                                android:textColor="?android:attr/textColorSecondary" />
+                                android:textAppearance="?attr/textAppearanceBody2" />
 
 
                         </LinearLayout>
@@ -279,8 +276,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
                                 android:text="@string/card3_3_subheading"
-                                android:textAppearance="?attr/textAppearanceBody2"
-                                android:textColor="?android:attr/textColorSecondary" />
+                                android:textAppearance="?attr/textAppearanceBody2" />
 
 
                         </LinearLayout>
